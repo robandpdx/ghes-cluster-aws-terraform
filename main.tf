@@ -131,6 +131,7 @@ module "frontend2" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  associate_public_ip_address = true
 
   ebs_block_device = [
     {
@@ -157,6 +158,7 @@ module "backend1" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  associate_public_ip_address = true
 
   ebs_block_device = [
     {
@@ -183,6 +185,7 @@ module "backend2" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  associate_public_ip_address = true
 
   ebs_block_device = [
     {
@@ -209,6 +212,7 @@ module "backend3" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  associate_public_ip_address = true
 
   ebs_block_device = [
     {
