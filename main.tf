@@ -105,6 +105,8 @@ module "frontend1" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  ebs_optimized = true
+  create_eip    =  true
 
   ebs_block_device = [
     {
@@ -131,6 +133,7 @@ module "frontend2" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  ebs_optimized = true
   associate_public_ip_address = true
 
   ebs_block_device = [
@@ -158,6 +161,7 @@ module "backend1" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  ebs_optimized = true
   associate_public_ip_address = true
 
   ebs_block_device = [
@@ -185,6 +189,7 @@ module "backend2" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  ebs_optimized = true
   associate_public_ip_address = true
 
   ebs_block_device = [
@@ -212,6 +217,7 @@ module "backend3" {
 
   vpc_security_group_ids = ["${module.vpc.default_security_group_id}"]
   subnet_id = "${module.vpc.public_subnets[0]}"
+  ebs_optimized = true
   associate_public_ip_address = true
 
   ebs_block_device = [
@@ -228,21 +234,11 @@ module "backend3" {
   }
 }
 
-# create an elastic IP and associate it with the ec2 instance
-resource "aws_eip" "frontend1_eip" {
-  instance = "${module.frontend1.id}"
-
-  tags = {
-    Name = "${var.prefix}-eip"
-    owner = "${var.owner}"
-  }
-}
-
 # add a dns record for the elastic IP
 resource "aws_route53_record" "dns" {
   zone_id = var.route53_zone_id
   name    = "${var.host_name}.${var.domain_name}"
   type    = "A"
   ttl     = 300
-  records = ["${aws_eip.frontend1_eip.public_ip}"]
+  records = ["${module.frontend1.public_ip}"]
 }
