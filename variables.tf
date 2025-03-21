@@ -38,7 +38,7 @@ variable "key_name" {
 
 variable "instance_type" {
   description = "Instance type for the EC2 instance"
-  default     = "m5a.2xlarge"
+  default     = "r6i.4xlarge"
   type        = string
 }
 
