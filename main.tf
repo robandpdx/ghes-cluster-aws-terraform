@@ -110,6 +110,12 @@ module "frontend1" {
 
   ebs_block_device = [
     {
+      device_name = "/dev/sda1"
+      volume_size = 500
+      volume_type = "gp3"
+      delete_on_termination = true
+    },
+    {
       device_name = "/dev/xvdb"
       volume_size = 800
       volume_type = "gp3"
@@ -137,6 +143,12 @@ module "frontend2" {
   associate_public_ip_address = true
 
   ebs_block_device = [
+    {
+      device_name = "/dev/sda1"
+      volume_size = 500
+      volume_type = "gp3"
+      delete_on_termination = true
+    },
     {
       device_name = "/dev/xvdb"
       volume_size = 800
@@ -166,6 +178,12 @@ module "backend1" {
 
   ebs_block_device = [
     {
+      device_name = "/dev/sda1"
+      volume_size = 500
+      volume_type = "gp3"
+      delete_on_termination = true
+    },
+    {
       device_name = "/dev/xvdb"
       volume_size = 800
       volume_type = "gp3"
@@ -194,6 +212,12 @@ module "backend2" {
 
   ebs_block_device = [
     {
+      device_name = "/dev/sda1"
+      volume_size = 500
+      volume_type = "gp3"
+      delete_on_termination = true
+    },
+    {
       device_name = "/dev/xvdb"
       volume_size = 800
       volume_type = "gp3"
@@ -221,6 +245,12 @@ module "backend3" {
   associate_public_ip_address = true
 
   ebs_block_device = [
+    {
+      device_name = "/dev/sda1"
+      volume_size = 500
+      volume_type = "gp3"
+      delete_on_termination = true
+    },
     {
       device_name = "/dev/xvdb"
       volume_size = 800
